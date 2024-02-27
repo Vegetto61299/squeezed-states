@@ -4,8 +4,9 @@ int main()
 {
 	ofstream file("data.txt");
 
-	squeeze state;
-	file << real(state.phi);
+	state s;
+	s.squeeze(0,1,0);
+	cout << real(s.scs);
 	file.close();
+	return 0;
 }
-
