@@ -17,8 +17,8 @@ class state {
 public:
 	cx_mat phi;//matrix of fock states (often phi is used for them)
 	cx_vec scs;//squeezed coherent state
-	int nphi = 50;//number of phi (cols)
-	int nx = 100;//nubmer of x points (rows)
+	int nphi = 60;//number of phi (cols)
+	int nx = 200;//nubmer of x points (rows)
 	double xmax = 10;//distance from 0 to furthest point (it will be 2 times xmax from -xmax to xmax)
 	double xgap = 2 * xmax / (nx - 1);//distance from point to point
 	double pi = acos(-1);
@@ -58,9 +58,9 @@ public:
 
 				outl = cx_vec(nx, fill::zeros);
 				for (int l = 0; 2 * k - m + l < nphi;l++) {
-					outl += pow(a,l)/factorial(l)*sqrt(factorial(2*k-m+l))/factorial(2*k-m)*exp(-1i*t*(2*k-m+l+0.5))*phi.col(2*k-m+l);
+					outl += pow(a,l)/factorial(l)*sqrt(factorial(2*k-m+l))*exp(-1i*t*(2*k-m+l+0.5))*phi.col(2*k-m+l);
 				}
-				outl *= pow(conj(a), m) / factorial(m)/sqrt(factorial(2 * k - m));
+				outl *= pow(-conj(a), m) / factorial(m)/factorial(2 * k - m);
 				outm += outl;
 			}
 			outm *= pow(-tanh(b), k) * factorial(2 * k) / (pow(2, k) * factorial(k));
