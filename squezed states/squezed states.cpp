@@ -2,12 +2,15 @@
 #include <fstream>
 int main()
 {
-	ofstream file("data.txt");
 
 	state s;
-	s.squeeze(0,1,0);
-	
-	cout << real(s.scs);//% is elementwise multiplication c=a%b means c(0)=a(0)*b(0)... so it's modulo squared
-	file.close();
+	s.plotstate(0,1);
+	s.plotstatems(0,1);
+	s.plotstate(1, 0);
+	s.plotstatems(1, 0);
+	s.plotstate(1, 1);
+	s.plotstatems(1, 1);
+	s.plotstate(1, 2);
+	s.plotstatems(1, 2);
 	return 0;
 }
