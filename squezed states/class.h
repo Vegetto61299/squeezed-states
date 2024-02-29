@@ -4,7 +4,7 @@
 #include <cmath>
 #include <armadillo>//great vectors and complex numbers compared to <vector> and <complex>
 #include "gnuplot.h"
-
+#include <thread>
 using namespace std;
 using namespace arma;
 double factorial(int n) {
@@ -19,14 +19,14 @@ class state {
 public:
 	cx_mat phi;//matrix of fock states (often phi is used for them)
 	cx_vec scs;//squeezed coherent state
-	int nphi = 80;//number of phi (cols)
-	int nx = 200;//nubmer of x points (rows)
-	double xmax = 10;//distance from 0 to furthest point (it will be 2 times xmax from -xmax to xmax)
+	int nphi = 140;//number of phi (cols)
+	int nx = 1000;//nubmer of x points (rows)
+	double xmax = 30;//distance from 0 to furthest point (it will be 2 times xmax from -xmax to xmax),,,!! remember to check if last phi is 0 at the edges!!
 	double xgap = 2 * xmax / (nx - 1);//distance from point to point
 	double pi = acos(-1);
 	vec x;
 
-	void normalize(int n) {//integration by simpson rule
+	void normalize(int n) {//integration by simpson rule, you don't need to normalize all of them because variable "integral" is same for everything but i left it to check if phi[big] is still in range of xmax
 		double integral = 0;
 		double fx;
 		for (int i = 0; i < nx - 1; i++) {
@@ -48,6 +48,7 @@ public:
 			}
 		}
 	}
+	//separating plotstatems and plotstate was inefficient but it's not taking much more time
 	void plotstate(cx_double a, double b) {//not sure how to do it without using a file so it's a dumb way
 		ofstream file("data-a_" + to_string(float(real(a))) + " i" + to_string(float(imag(a))) + "b_" + to_string(float(b)) + ".txt");
 		GnuplotPipe gp;
@@ -68,12 +69,12 @@ public:
 		gp.sendLine("set terminal gif animate delay 8");
 		gp.sendLine("set output \"wavefunction-a_" + to_string(float(real(a))) + " i" + to_string(float(imag(a))) + "b_" + to_string(float(b)) + ".gif\"");
 		gp.sendLine("do for [i = 1:" + to_string(N) + "] {");
-		gp.sendLine("plot \"data.txt\" using 1:2 index i-1 title 'real' with lines, \"data.txt\" using 1:3 index i-1  title 'imag' with lines");
+		gp.sendLine(("plot \"data-a_" + to_string(float(real(a))) + " i" + to_string(float(imag(a))) + "b_" + to_string(float(b)) + ".txt\" using 1:2 index i-1 title 'real' with lines, \"data-a_" + to_string(float(real(a))) + " i" + to_string(float(imag(a))) + "b_" + to_string(float(b)) + ".txt\" using 1:3 index i-1  title 'imag' with lines"));
 		gp.sendLine("}");
 		file.close();
 	}
 	void plotstatems(cx_double a, double b) {//not sure how to do it without using a file so it's a dumb way
-		ofstream file("data-a_" + to_string(float(real(a))) + " i" + to_string(float(imag(a))) + "b_" + to_string(float(b)) + ".txt");
+		ofstream file("datams-a_" + to_string(float(real(a))) + " i" + to_string(float(imag(a))) + "b_" + to_string(float(b)) + ".txt");
 		GnuplotPipe gp;
 		string s;
 		mat output(nx, 3);
@@ -91,7 +92,7 @@ public:
 		gp.sendLine("set terminal gif animate delay 8");
 		gp.sendLine("set output \"modulosquared-a_" + to_string(float(real(a))) + " i" + to_string(float(imag(a))) + "b_" + to_string(float(b)) + ".gif\"");
 		gp.sendLine("do for [i = 1:" + to_string(N) + "] {");
-		gp.sendLine("plot \"data.txt\" using 1:2 index i-1 title 'mod^2' with lines");
+		gp.sendLine(("plot \"datams-a_" + to_string(float(real(a))) + " i" + to_string(float(imag(a))) + "b_" + to_string(float(b)) + ".txt\" using 1:2 index i-1 title 'mod^2' with lines"));
 		gp.sendLine("}");
 		file.close();
 	}

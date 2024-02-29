@@ -1,0 +1,241 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 2cm
+\headheight 2cm
+\headsep 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+Wcześniej mieliśmy stan koherentny 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+ψ_{α}=e^{-\frac{|α|^{2}}{2}}\sum_{n=0}^{\infty}\frac{α^{n}}{\sqrt{n!}}φ_{n}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Stan ścieśniony tworzy się poprzez 2 operatory działające na stan próżni
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+D_{α}S_{β}ψ_{0}=Ψ_{α,β}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+gdzie
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+D_{α}=e^{\left(α\hat{a}^{+}-α^{*}\hat{a}\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+tutaj warto zauważyć że 
+\begin_inset Formula $D_{α}φ_{0}=ψ_{α}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+S_{β}=e^{\frac{1}{2}\left[β^{*}\left(\hat{a}^{+}\right)^{2}-β\left(\hat{a}\right)^{2}\right]}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Można to rozpisać jako 
+\begin_inset Formula $e^{x}=\sum_{n=0}^{\infty}\frac{x^{n}}{n!}$
+\end_inset
+
+ ale skorzystamy ze wzoru z neta gdzie 
+\begin_inset Formula $β=re^{iθ}$
+\end_inset
+
+ (wstępnie warto wziąć między 1 a 2 żeby zobaczyć jak ten parametr wpływa
+ na stan wynikowy)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Ψ_{0,β}=S_{β}φ_{0}=\sqrt{\frac{1}{cosh(r)}}\sum_{k=0}\left(-\tanh r\right)^{k}\frac{\sqrt{\left(2k\right)!}}{2^{k}k!}φ_{2k}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+to jest stan ściśniętej próżni.
+ teraz działa się operatorem przesunięcia, dla uproszczenia obliczeń eksponentę
+ zapiszemy z reguły beckera-hausdorfa (
+\begin_inset Formula $aa^{+}\neq a^{+}a$
+\end_inset
+
+ wiec eksponenty nie można podzielić w zwykły sposób)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+D_{α}=e^{\left(α\hat{a}^{+}-α^{*}\hat{a}\right)}=e^{-\frac{1}{2}\left|α\right|^{2}}e^{α\hat{a}^{+}}e^{-α^{*}\hat{a}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+niestety sprowadza się to do 2 dodatkowych sum i chyba nie da się tego skrócić
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+D_{α}=e^{-\frac{1}{2}\left|α\right|^{2}}\sum_{l=0}^{\infty}\frac{\left(α\hat{a}^{+}\right)^{l}}{l!}\sum_{m=0}^{\infty}\frac{\left(-α^{*}\hat{a}\right)^{m}}{m!}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+wtedy 
+\begin_inset Formula $D_{α}Ψ_{0,β}=Ψ_{α,β}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Ψ_{α,β}=e^{-\frac{1}{2}\left|α\right|^{2}}\sqrt{\frac{1}{cosh(r)}}\sum_{l,k=0}^{\infty}\sum_{m=0}^{m\leq2k}\left(-\tanh r\right)^{k}\frac{\left(α\right)^{l}\left(-α^{*}\right)^{m}\left(2k\right)!\sqrt{\left(2k-m+l\right)!}}{2^{k}k!l!m!\left(2k-m\right)!}φ_{2k-m+l}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Ψ_{α,β}=e^{-\frac{1}{2}\left|α\right|^{2}}\sqrt{\frac{1}{cosh(r)}}\sum_{k=0}^{\infty}\frac{\left(2k\right)!}{2^{k}k!}\left(-\tanh r\right)^{k}\sum_{m=0}^{m\leq2k}\frac{\left(-α^{*}\right)^{m}}{m!\left(2k-m\right)!}\sum_{l=0}^{\infty}\frac{\left(α\right)^{l}}{l!}\sqrt{\left(2k-m+l\right)!}φ_{2k-m+l}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
